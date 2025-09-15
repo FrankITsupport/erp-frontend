@@ -1,11 +1,13 @@
-import { rest } from 'msw'
 
-export const procurementHandlers = [
-  // Example endpoint
-  rest.get('/api/procurement/example', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json([{ message: 'Mocked response from procurement' }])
-    )
-  })
-]
+if (import.meta.env.DEV) {
+  import { http, HttpResponse } from 'msw'
+
+  procurementHandlers = [
+    // Example endpoint
+    http.get('/api/procurement/example', () => {
+      return HttpResponse.json([{ message: 'Mocked response from procurement' }])
+    }),
+  ]
+}
+
+export { procurementHandlers }

@@ -32,7 +32,11 @@ const vuetify = createVuetify({
 async function bootstrap() {
   if (import.meta.env.MODE === 'development') {
     const { worker } = await import('./mocks/browser')
-    await worker.start()
+    await worker.start({
+    serviceWorker: {
+      url: '/mockServiceWorker.js',
+    },
+  })
   }
 
   createApp(App)

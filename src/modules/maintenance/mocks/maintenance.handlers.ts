@@ -1,11 +1,9 @@
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 
-export const maintenanceHandlers = [
-  // Example endpoint
-  rest.get('/api/maintenance/example', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json([{ message: 'Mocked response from maintenance' }])
-    )
-  })
+
+export const handlers = [
+  http.get('/api/maintenance/tasks', () => {
+    return HttpResponse.json([{ id: 1, task: 'Check machine A' }])
+  }),
 ]
+

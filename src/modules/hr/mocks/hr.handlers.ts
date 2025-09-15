@@ -1,11 +1,7 @@
-import { rest } from 'msw'
+import { http, HttpResponse } from 'msw'
 
-export const hrHandlers = [
-  // Example endpoint
-  rest.get('/api/hr/example', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json([{ message: 'Mocked response from hr' }])
-    )
-  })
+export const handlers = [
+  http.get('/api/hr/employees', () => {
+    return HttpResponse.json([{ id: 1, name: 'Alice HR' }])
+  }),
 ]
